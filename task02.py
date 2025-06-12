@@ -9,9 +9,11 @@ def merge_k_lists(lists):
   for i in range(len(lists)):
     if lists[i]:
       #print(lists[i])
-      while lists[i]:
-        merged_list.append(lists[i].pop(0))
+      # while lists[i]:
+      #   merged_list.append(lists[i].pop(0))
       #print("merged_list",merged_list)
+      for li in range(len(lists[i])):
+        merged_list.append(lists[i][li])
 
   heapq.heapify(merged_list)
   #print("merged_list",merged_list)
