@@ -4,22 +4,15 @@
 import heapq
 
 def merge_k_lists(lists):
-  #print(lists)
-  merged_list = []
+  heap = []
   for i in range(len(lists)):
     if lists[i]:
-      #print(lists[i])
-      # while lists[i]:
-      #   merged_list.append(lists[i].pop(0))
-      #print("merged_list",merged_list)
       for li in range(len(lists[i])):
-        merged_list.append(lists[i][li])
+        heapq.heappush(heap, lists[i][li])
 
-  heapq.heapify(merged_list)
-  #print("merged_list",merged_list)
   sorted_list=[]
-  while merged_list:
-    sorted_list.append(heapq.heappop(merged_list))
+  while heap:
+    sorted_list.append(heapq.heappop(heap))
 
   return sorted_list
     
