@@ -5,14 +5,19 @@ import heapq
 
 def merge_k_lists(lists):
   heap = []
-  for i in range(len(lists)):
-    if lists[i]:
-      for li in range(len(lists[i])):
-        heapq.heappush(heap, lists[i][li])
-
+  # додаємо перші елементи кожного списку в купу
+  for lst in lists:
+    if lst: 
+      heapq.heappush(heap, lst.pop(0))
+  
   sorted_list=[]
-  while heap:
+
+  while heap: # поки купа не порожня
     sorted_list.append(heapq.heappop(heap))
+    #print(sorted_list, heap)
+    for i in range(len(lists)):
+      if lists[i]:
+        heapq.heappush(heap, lists[i].pop(0))
 
   return sorted_list
     
@@ -20,4 +25,4 @@ def merge_k_lists(lists):
 if __name__ == "__main__":
   lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
   merged_list = merge_k_lists(lists)
-  print("Відсортований список:", merged_list)
+  print("Відсортований список:", merged_list) # Відсортований список: [1, 1, 2, 3, 4, 4, 5, 6]
